@@ -92,8 +92,8 @@ class ArinstDevice:
                 command = ArinstCommand.SCAN_RANGE_TRACKING
             else:
                 command = ArinstCommand.SCAN_RANGE
-            attenuation = (attenuation * 100) + 10000
-            response = self.send_command(command, start, stop, step, 200, 20, 10700000, attenuation)
+            proto_attenuation = (attenuation * 100) + 10000
+            response = self.send_command(command, start, stop, step, 200, 20, 10700000, proto_attenuation)
             if len(response) == 3:
                 if response[-1][0] == b"complete" and str(response[0][0], 'ascii') == command:
                     return self.__decode_data(response[1][0][0:-2], attenuation)
